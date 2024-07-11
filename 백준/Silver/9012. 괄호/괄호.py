@@ -1,21 +1,25 @@
-n = int(input())
+import sys
 
-for i in range(n):
+# 명령어 수
+T = int(sys.stdin.readline())
+
+for _ in range(T):
     stack = []
-    bracket = input()
-    ISVPS = True
+    ps = sys.stdin.readline().strip()
+    is_vps = True
     
-    for s in bracket:
-        if s == '(':
-            stack.append('(')
-        if s == ')':
-            if stack :
+    for p in ps:
+        if p == "(":
+            stack.append(p)
+        elif p == ")":
+            if stack:
                 stack.pop()
-            else :
-                print('NO')
+            else:
+                is_vps = False
                 break
-    else :
-        if len(stack)==0:
-            print('YES')
-        else:
-            print('NO')
+            
+    if stack or is_vps == False :
+        print("NO")
+    else:
+        print("YES")
+    
