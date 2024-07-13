@@ -1,6 +1,8 @@
-num = int(input())
+import sys
 
-for n in range(num):
-    s = list(input().split())
-    for j in s:
-        print(j[::-1])
+T = int(sys.stdin.readline())
+
+for _ in range(T):
+    sentence = list(sys.stdin.readline().strip().split())
+    stack = [''.join(reversed(word)) for word in sentence]
+    print(' '.join(stack))
