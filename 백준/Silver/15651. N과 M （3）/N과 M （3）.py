@@ -5,7 +5,7 @@ result = []
 
 def backtracking():
     if len(result) == M:
-        print(*result)
+        print(' '.join(map(str, result)))
         return
 
     for i in range(1,N+1):
