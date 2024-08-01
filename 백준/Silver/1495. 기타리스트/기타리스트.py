@@ -12,9 +12,9 @@ for i in range(n):
             n2 = j-v[i]
             
             if n2 >= 0:
-                dp[i+1][n2] = 1
+                dp[i+1][n2] = True
             if n1 <= m:
-                dp[i+1][n1] = 1
+                dp[i+1][n1] = True
                 
 for i in range(m,-1,-1):
     if dp[n][i] == True:
