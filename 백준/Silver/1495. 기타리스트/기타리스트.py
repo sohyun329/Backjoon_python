@@ -2,23 +2,28 @@ import sys
 
 n,s,m = map(int, sys.stdin.readline().strip().split())
 v = list(map(int,sys.stdin.readline().strip().split()))
-dp = [[False]*(m+1) for _ in range(n+1)]
-dp[0][s] = True
 
-for i in range(n):
-    for j in range(m+1):
-        if dp[i][j] == True:
-            n1 = v[i]+j
-            n2 = j-v[i]
-            
-            if n2 >= 0:
-                dp[i+1][n2] = True
-            if n1 <= m:
-                dp[i+1][n1] = True
-                
-for i in range(m,-1,-1):
-    if dp[n][i] == True:
-        print(i)
-        exit()
-else:
-    print(-1)
+def max_volume(n,s,m,v):
+    dp = [False]*(m+1)
+    dp[s] = True
+    
+    for i in range(n):
+        next_dp = [False]*(m+1)
+        for j in range(m+1):
+            if dp[j]:
+                if j+v[i]<=m:
+                    next_dp[j+v[i]] = True
+                if j-v[i]>=0:
+                    next_dp[j-v[i]] = True
+                    
+        dp = next_dp
+        
+    max_vol = -1
+    for vol in range(m,-1,-1):
+        if dp[vol]:
+            max_vol = vol
+            break
+        
+    return max_vol
+
+print(max_volume(n,s,m,v))
